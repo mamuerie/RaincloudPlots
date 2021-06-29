@@ -12,6 +12,8 @@ output:
 ## Create Raincloud Plots
 Plots and functions are based on the following scripts: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
 
+Plots can be view in "figure" folder or in the html file.
+
 ### 1. Load specific package versions
 
 
@@ -126,8 +128,7 @@ raincloud_theme <- theme(
 
 
 ```r
-raincloudPlotBoxplot <-
-  ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
+ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   geom_flat_violin(
     aes(fill = mapping),
     position = position_nudge(x = .15, y = 0),
@@ -164,15 +165,13 @@ raincloudPlotBoxplot <-
   ylab("Performance p(hit)-p(fa)") +
   theme_classic() +
   raincloud_theme
-
-plot(raincloudPlotBoxplot)
 ```
 
-<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figure/figure-raincloudPlotBoxplot-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figureraincloudPlotBoxplot-1.png" width="90%" style="display: block; margin: auto;" />
 
 
 ```r
-raincloudPlotPoints<- ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
+ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   geom_flat_violin(
     aes(fill = mapping),
     position = position_nudge(x = .1, y = 0),
@@ -236,15 +235,13 @@ raincloudPlotPoints<- ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = ma
   ylab("Performance p(hit)-p(fa)") +
   theme_classic() +
   raincloud_theme
-
-plot(raincloudPlotPoints)
 ```
 
-<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figure/figure-raincloudPlotPoints-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figureraincloudPlotPoints-1.png" width="90%" style="display: block; margin: auto;" />
 
 
 ```r
-raincloudPlotPosition<- ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
+ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   geom_flat_violin(
     aes(fill = mapping),
     position = position_nudge(x = .1, y = 0),
@@ -308,8 +305,6 @@ raincloudPlotPosition<- ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = 
   ylab("Performance p(hit)-p(fa)") +
   theme_classic() +
   raincloud_theme
-
-plot(raincloudPlotPosition)
 ```
 
-<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figure/figure-raincloudPlotPosition-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figureraincloudPlotPosition-1.png" width="90%" style="display: block; margin: auto;" />
