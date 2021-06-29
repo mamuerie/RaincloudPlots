@@ -3,6 +3,7 @@ title: "RaincloudPlots"
 author: "Marie Mückstein"
 date: "29 6 2021"
 output:
+  pdf_document: default
   html_document:
     keep_md: TRUE
 ---
@@ -22,7 +23,7 @@ knitr::opts_chunk$set(
   fig.retina = 2,
   fig.align = "center",
   fig.show = "hold",
-  fig.path = here("figure" ,"")
+  fig.path = here("figure" ,"fig-")
 )
 
 ```
@@ -103,6 +104,8 @@ raincloud_theme <- theme(
 
 ### 6. Create Raincloud plots
 
+Raincloud plot with distributions and boxplots
+
 ```{r raincloudPlotBoxplot, fig.height=6}
 ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   geom_flat_violin(
@@ -143,6 +146,9 @@ ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   raincloud_theme
 
 ```
+
+Raincloud plot with distributions and means and standard errors
+
 
 ```{r raincloudPlotPoints, fig.hight = 6}
 ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
@@ -211,6 +217,9 @@ ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   raincloud_theme
 
 ```
+
+Raincloud plot with distributions and means and standard errors, with different positions and transparency values.
+
 
 ```{r raincloudPlotPosition, fig.hight = 6}
 ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
