@@ -3,9 +3,9 @@ title: "RaincloudPlots"
 author: "Marie Mückstein"
 date: "29 6 2021"
 output:
+  github_document:
+    dev: png
   pdf_document: default
-  html_document:
-    keep_md: TRUE
 ---
 
 ```{r setup, include = FALSE}
@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
 ## Create Raincloud Plots
 Plots and functions are based on the following scripts: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
 
-Plots can be view in "figure" folder or in the html file.
+Plots can be view in "figure" folder or in the pdf file.
 
 ### 1. Load specific package versions
 

@@ -1,42 +1,33 @@
----
-title: "RaincloudPlots"
-author: "Marie Mückstein"
-date: "29 6 2021"
-output:
-  html_document:
-    keep_md: TRUE
----
-
-
+RaincloudPlots
+================
+Marie Mückstein
+29 6 2021
 
 ## Create Raincloud Plots
-Plots and functions are based on the following scripts: https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R
 
-Plots can be view in "figure" folder or in the html file.
+Plots and functions are based on the following scripts:
+<https://github.com/RainCloudPlots/RainCloudPlots/tree/master/tutorial_R>
+
+Plots can be view in “figure” folder or in the pdf file.
 
 ### 1. Load specific package versions
 
-
-```r
+``` r
 renv::restore()
 ```
 
-```
-## * The library is already synchronized with the lockfile.
-```
+    ## * The library is already synchronized with the lockfile.
 
-### 2. Load Raincloud File 
+### 2. Load Raincloud File
 
-
-```r
+``` r
 source(here("R-Function", "R_rainclouds.R"))
 source(here("R-Function", "summarySE.R"))
 ```
 
 ### 3. Load and prepare data
 
-
-```r
+``` r
 data <-
   read.table(here("data", "PMF03_performance.csv"),
              sep = ";",
@@ -50,50 +41,44 @@ data <-
 head(data)
 ```
 
-```
-##   timepoint subjectID      mapping    condition     Sex AgeToday pHit.pFa_DT
-## 1      Post       101   compatible   compInterv diverse       30      0.9500
-## 2      Post       101 incompatible   compInterv diverse       30      0.8750
-## 3      Post       102   compatible incompInterv    male       26      0.8275
-## 4      Post       102 incompatible incompInterv    male       26      0.7875
-## 5      Post       103   compatible   compInterv  female       26      0.7500
-## 6      Post       103 incompatible   compInterv  female       26      0.3900
-##   pHit.pFa_ST
-## 1      1.0000
-## 2      0.9750
-## 3      0.9625
-## 4      0.8500
-## 5      0.9125
-## 6      0.9250
-```
+    ##   timepoint subjectID      mapping    condition     Sex AgeToday pHit.pFa_DT
+    ## 1      Post       101   compatible   compInterv diverse       30      0.9500
+    ## 2      Post       101 incompatible   compInterv diverse       30      0.8750
+    ## 3      Post       102   compatible incompInterv    male       26      0.8275
+    ## 4      Post       102 incompatible incompInterv    male       26      0.7875
+    ## 5      Post       103   compatible   compInterv  female       26      0.7500
+    ## 6      Post       103 incompatible   compInterv  female       26      0.3900
+    ##   pHit.pFa_ST
+    ## 1      1.0000
+    ## 2      0.9750
+    ## 3      0.9625
+    ## 4      0.8500
+    ## 5      0.9125
+    ## 6      0.9250
 
-```r
+``` r
 str(data)
 ```
 
-```
-## 'data.frame':	180 obs. of  8 variables:
-##  $ timepoint  : Factor w/ 2 levels "Pre","Post": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ subjectID  : int  101 101 102 102 103 103 104 104 105 105 ...
-##  $ mapping    : Factor w/ 2 levels "compatible","incompatible": 1 2 1 2 1 2 1 2 1 2 ...
-##  $ condition  : Factor w/ 3 levels "compInterv","incompInterv",..: 1 1 2 2 1 1 2 2 1 1 ...
-##  $ Sex        : Factor w/ 3 levels "diverse","female",..: 1 1 3 3 2 2 3 3 3 3 ...
-##  $ AgeToday   : int  30 30 26 26 26 26 22 22 22 22 ...
-##  $ pHit.pFa_DT: num  0.95 0.875 0.828 0.787 0.75 ...
-##  $ pHit.pFa_ST: num  1 0.975 0.963 0.85 0.912 ...
-```
-
+    ## 'data.frame':    180 obs. of  8 variables:
+    ##  $ timepoint  : Factor w/ 2 levels "Pre","Post": 2 2 2 2 2 2 2 2 2 2 ...
+    ##  $ subjectID  : int  101 101 102 102 103 103 104 104 105 105 ...
+    ##  $ mapping    : Factor w/ 2 levels "compatible","incompatible": 1 2 1 2 1 2 1 2 1 2 ...
+    ##  $ condition  : Factor w/ 3 levels "compInterv","incompInterv",..: 1 1 2 2 1 1 2 2 1 1 ...
+    ##  $ Sex        : Factor w/ 3 levels "diverse","female",..: 1 1 3 3 2 2 3 3 3 3 ...
+    ##  $ AgeToday   : int  30 30 26 26 26 26 22 22 22 22 ...
+    ##  $ pHit.pFa_DT: num  0.95 0.875 0.828 0.787 0.75 ...
+    ##  $ pHit.pFa_ST: num  1 0.975 0.963 0.85 0.912 ...
 
 ### 4. Calculate group means
 
-```r
+``` r
 summaryDT <- summarySE(data, groupvars = c("timepoint", "mapping", "condition"), measurevar = "pHit.pFa_DT", na.rm =T)
 ```
 
-
 ### 5. Define Raincloud theme
 
-```r
+``` r
 raincloud_theme <- theme(
   text = element_text(size = 10),
   axis.title.x = element_text(size = 16),
@@ -126,8 +111,9 @@ raincloud_theme <- theme(
 
 ### 6. Create Raincloud plots
 
+Raincloud plot with distributions and boxplots
 
-```r
+``` r
 ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   geom_flat_violin(
     aes(fill = mapping),
@@ -167,10 +153,11 @@ ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   raincloud_theme
 ```
 
-<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figureraincloudPlotBoxplot-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figure/fig-raincloudPlotBoxplot-1.png" width="90%" style="display: block; margin: auto;" />
 
+Raincloud plot with distributions and means and standard errors
 
-```r
+``` r
 ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   geom_flat_violin(
     aes(fill = mapping),
@@ -237,10 +224,12 @@ ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   raincloud_theme
 ```
 
-<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figureraincloudPlotPoints-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figure/fig-raincloudPlotPoints-1.png" width="90%" style="display: block; margin: auto;" />
 
+Raincloud plot with distributions and means and standard errors, with
+different positions and transparency values.
 
-```r
+``` r
 ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   geom_flat_violin(
     aes(fill = mapping),
@@ -307,4 +296,4 @@ ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   raincloud_theme
 ```
 
-<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figureraincloudPlotPosition-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figure/fig-raincloudPlotPosition-1.png" width="90%" style="display: block; margin: auto;" />
