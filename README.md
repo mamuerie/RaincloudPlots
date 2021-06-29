@@ -126,7 +126,8 @@ raincloud_theme <- theme(
 
 
 ```r
-ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
+raincloudPlotBoxplot <-
+  ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   geom_flat_violin(
     aes(fill = mapping),
     position = position_nudge(x = .15, y = 0),
@@ -163,13 +164,15 @@ ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   ylab("Performance p(hit)-p(fa)") +
   theme_classic() +
   raincloud_theme
+
+plot(raincloudPlotBoxplot)
 ```
 
 <img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figure/figure-raincloudPlotBoxplot-1.png" width="90%" style="display: block; margin: auto;" />
 
 
 ```r
-ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
+raincloudPlotPoints<- ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   geom_flat_violin(
     aes(fill = mapping),
     position = position_nudge(x = .1, y = 0),
@@ -233,13 +236,15 @@ ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   ylab("Performance p(hit)-p(fa)") +
   theme_classic() +
   raincloud_theme
+
+plot(raincloudPlotPoints)
 ```
 
 <img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figure/figure-raincloudPlotPoints-1.png" width="90%" style="display: block; margin: auto;" />
 
 
 ```r
-ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
+raincloudPlotPosition<- ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   geom_flat_violin(
     aes(fill = mapping),
     position = position_nudge(x = .1, y = 0),
@@ -303,6 +308,8 @@ ggplot(data, aes(x = timepoint, y = pHit.pFa_DT, fill = mapping)) +
   ylab("Performance p(hit)-p(fa)") +
   theme_classic() +
   raincloud_theme
+
+plot(raincloudPlotPosition)
 ```
 
 <img src="C:/Users/Marie/Documents/IPU/Software/R-RaincloudPlots/R-RaincloudPlots/figure/figure-raincloudPlotPosition-1.png" width="90%" style="display: block; margin: auto;" />
